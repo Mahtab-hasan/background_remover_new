@@ -1,0 +1,127 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Remover</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Body & Background */
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #0a0a0a !important;
+            border-bottom: 2px solid #007bff;
+        }
+        .navbar-brand {
+            color: #007bff !important;
+            font-weight: bold;
+        }
+        .navbar-brand:hover {
+            color: #00bfff !important;
+        }
+
+        /* Container */
+        .container {
+            margin-top: 50px;
+        }
+
+        /* Card */
+        .card {
+            background-color: #1e1e1e;
+            border: none;
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+            border-radius: 12px;
+        }
+        .card-header {
+            background: linear-gradient(90deg, #007bff, #00bfff);
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+        .card-body {
+            padding: 2rem;
+        }
+
+        /* Form Inputs */
+        .form-control {
+            background-color: #2a2a2a;
+            border: 1px solid #007bff;
+            color: #e0e0e0;
+        }
+        .form-control:focus {
+            background-color: #2a2a2a;
+            border-color: #00bfff;
+            color: #fff;
+            box-shadow: none;
+        }
+        label {
+            color: #00bfff;
+            font-weight: 500;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            font-weight: bold;
+        }
+        .btn-primary:hover {
+            background-color: #00bfff;
+            border-color: #00bfff;
+        }
+        .btn-success {
+            background-color: #00bfff;
+            border-color: #00bfff;
+        }
+        .btn-success:hover {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        /* Image Preview */
+        .image-preview {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border: 2px solid #007bff;
+            padding: 5px;
+            border-radius: 8px;
+            background-color: #1a1a1a;
+        }
+
+        /* Headings */
+        h4, h5 {
+            color: #00bfff;
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 768px) {
+            .card-body {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Background Remover</a>
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
