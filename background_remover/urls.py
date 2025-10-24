@@ -13,6 +13,12 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+    
+    Add a new environment variable:
+       * Name: SECRET_KEY
+       * Value: d32cdff05f33d18d43bd6480d82aeae1
+    
+    
 """
 from django.contrib import admin
 from django.urls import path, include
