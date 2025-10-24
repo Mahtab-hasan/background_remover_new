@@ -22,10 +22,9 @@ SECRET_KEY = os.environ.get(
 # -----------------------
 DEBUG = os.environ.get("DEBUG", "True") == "True"
 
-# Default hosts for local development
 ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
-# Add Render host if deploying there
+# Render.com automatic hostname
 RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
@@ -39,9 +38,9 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "whitenoise.runserver_nostatic",  # Must be before staticfiles
+    "whitenoise.runserver_nostatic",  # must come before staticfiles
     "django.contrib.staticfiles",
-    "remover",  # Your app
+    "remover",  # your app
 ]
 
 # -----------------------
@@ -49,7 +48,7 @@ INSTALLED_APPS = [
 # -----------------------
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",  # Whitenoise
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # whitenoise
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -66,7 +65,7 @@ ROOT_URLCONF = "background_remover.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates")],
+        "DIRS": [BASE_DIR / "templates"],  # cleaner path
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -112,12 +111,12 @@ USE_TZ = True
 # -----------------------
 # Static & Media Files
 # -----------------------
-STATIC_URL = "static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = BASE_DIR / "media"
 
 # -----------------------
 # Default Auto Field
@@ -125,7 +124,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # -----------------------
-# Security (optional for Render)
+# Security (for production)
 # -----------------------
 if not DEBUG:
     SESSION_COOKIE_SECURE = True
@@ -133,3 +132,4 @@ if not DEBUG:
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
