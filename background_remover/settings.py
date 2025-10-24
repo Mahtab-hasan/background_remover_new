@@ -20,14 +20,8 @@ SECRET_KEY = os.environ.get(
 # -----------------------
 # Debug & Allowed Hosts
 # -----------------------
-DEBUG = os.environ.get("DEBUG", "True") == "True"
-
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
-
-# Render.com automatic hostname
-RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+DEBUG = False
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "mahtabhasan.pythonanywhere.com"]
 
 # -----------------------
 # Installed Apps
@@ -65,7 +59,7 @@ ROOT_URLCONF = "background_remover.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],  # cleaner path
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -81,7 +75,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "background_remover.wsgi.application"
 
 # -----------------------
-# Database (SQLite for now)
+# Database (SQLite)
 # -----------------------
 DATABASES = {
     "default": {
@@ -124,12 +118,11 @@ MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # -----------------------
-# Security (for production)
+# Security for Production
 # -----------------------
-if not DEBUG:
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SECURE_BROWSER_XSS_FILTER = True
-    SECURE_CONTENT_TYPE_NOSNIFF = True
-    SECURE_SSL_REDIRECT = True
-    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
