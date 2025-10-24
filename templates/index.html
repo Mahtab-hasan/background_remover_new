@@ -30,7 +30,8 @@
                             <h5 class="text-center">Processed Image</h5>
                             <img src="{{ uploaded_image.processed_image.url }}" class="img-fluid image-preview mx-auto d-block" alt="Processed Image">
                             <div class="text-center mt-3">
-                                <a href="{{ uploaded_image.processed_image.url }}" download class="btn btn-success">Download Processed Image</a>
+                                <a href="{{ uploaded_image.processed_image.url }}" download class="btn btn-success me-2">Download Processed Image</a>
+                                <a href="{% url 'remove_image' uploaded_image.id %}" class="btn btn-danger" onclick="return confirm('Are you sure you want to remove this image?')">Remove Image</a>
                             </div>
                         </div>
                     </div>
